@@ -2,11 +2,11 @@
    1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
    ========================================= */
 :root {
-    /* Cores da Marca */
-    --primary: #008f4c;
-    --primary-gradient: linear-gradient(135deg, #9cc837 0%, #008f4c 100%);
-    --primary-dark: #00753e;
-    --secondary: #e6f4ea; 
+    /* NOVA PALETA AZUL/ROXO (Tecnologia/Informática) */
+    --primary: #4e54c8;
+    --primary-gradient: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+    --primary-dark: #3a3f99;
+    --secondary: #f3f4fa; /* Fundo levemente azulado */
     
     /* Cores Neutras */
     --text: #212529;
@@ -64,7 +64,7 @@ a {
     left: 0; 
     width: 100%; 
     z-index: 1000;
-    border-bottom: 2px solid rgba(0, 143, 76, 0.1);
+    border-bottom: 2px solid rgba(78, 84, 200, 0.1);
 }
 
 .main-header .container { 
@@ -132,7 +132,7 @@ a {
 .desktop-menu a:hover { color: var(--primary); }
 .desktop-menu a:hover::after { width: 100%; }
 
-/* Botão Destaque (Portal do Aluno) */
+/* Botão Destaque */
 .btn-destaque { 
     background: var(--primary-gradient); 
     color: var(--white) !important; 
@@ -141,7 +141,7 @@ a {
     font-size: 0.8rem;
     font-weight: 700;
     border: none;
-    box-shadow: 0 4px 10px rgba(0, 143, 76, 0.2);
+    box-shadow: 0 4px 10px rgba(78, 84, 200, 0.2);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -156,7 +156,7 @@ a {
 .btn-destaque:hover { 
     filter: brightness(0.95);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 143, 76, 0.3);
+    box-shadow: 0 6px 15px rgba(78, 84, 200, 0.3);
 }
 
 .menu-icon { 
@@ -190,7 +190,8 @@ a {
     left: 0; 
     width: 100%; 
     height: 100%;
-    background: linear-gradient(180deg, rgba(156, 200, 55, 0.9) 0%, rgba(0, 96, 48, 0.95) 100%);
+    /* Gradiente Azul/Roxo na Hero */
+    background: linear-gradient(180deg, rgba(78, 84, 200, 0.9) 0%, rgba(58, 63, 153, 0.95) 100%);
 }
 
 .hero-container {
@@ -236,7 +237,7 @@ a {
 }
 
 /* =========================================
-   4. BOTÕES E UTILITÁRIOS GERAIS
+   4. BOTÕES GERAIS
    ========================================= */
 .btn-primary { 
     background: var(--primary-gradient); 
@@ -271,6 +272,7 @@ a {
     color: var(--primary); 
 }
 
+/* Seções */
 .section-padding { padding: 80px 0; }
 
 .section-bg { 
@@ -327,21 +329,7 @@ a {
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-/* Tema Uniritter (Vermelho) */
-.splide-uniritter .splide__arrow {
-    background: linear-gradient(135deg, #ff4b4b 0%, #b30000 100%);
-}
-.splide-uniritter .splide__arrow:hover {
-    box-shadow: 0 6px 20px rgba(179, 0, 0, 0.4);
-}
-#uniritter .section-title { color: #b30000; }
-#uniritter .section-title::after {
-    background: linear-gradient(135deg, #ff4b4b 0%, #b30000 100%);
-}
-#uniritter .btn-link { color: #b30000; }
-#uniritter .btn-link:hover { color: #800000; text-decoration: underline; }
-
-/* Estilo do Card do Curso */
+/* Card Serviço */
 .card-curso {
     background: var(--white);
     border-radius: 20px;
@@ -404,86 +392,21 @@ a {
 .btn-link:hover { color: var(--primary-dark); text-decoration: underline; }
 
 /* =========================================
-   6. FORMULÁRIOS
-   ========================================= */
-.contato-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px; 
-    align-items: stretch; 
-}
-#contato .contato-grid { grid-template-columns: 1fr 1fr; }
-
-.form-contato {
-    background: var(--white);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.05);
-    height: 100%; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.form-contato input, 
-.form-contato textarea, 
-.form-contato select {
-    width: 100%; 
-    padding: 18px; 
-    margin-bottom: 20px;
-    border: 2px solid #eee;
-    border-radius: 10px; 
-    font-family: inherit;
-    box-sizing: border-box; 
-    transition: 0.3s;
-    font-size: 1rem;
-    background-color: #fcfcfc;
-}
-.form-contato input:focus, .form-contato textarea:focus {
-    outline: none; 
-    border-color: var(--primary); 
-    background-color: #fff;
-    box-shadow: 0 0 0 4px rgba(156, 200, 55, 0.15);
-}
-
-.form-contato button {
-    background: var(--primary-gradient); 
-    color: white; 
-    border: none; 
-    width: 100%; 
-    cursor: pointer; 
-    transition: all 0.3s ease;
-    padding: 18px;
-    font-weight: 800;
-    border-radius: 10px;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.form-contato button:hover { 
-    filter: brightness(0.95);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 143, 76, 0.2);
-}
-
-.email-link, .tel-link {
-    color: var(--text);
-    font-weight: 700;
-    transition: 0.3s;
-    font-size: 1.2rem;
-}
-.email-link:hover, .tel-link:hover { color: var(--primary); }
-.tel-link { text-decoration: none; }
-
-/* =========================================
-   7. MAPAS E LOJA
+   6. MAPAS E LOJA
    ========================================= */
 .mapas-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; 
     gap: 40px; 
 }
+
+/* Classe especial para centralizar o mapa único */
+.single-map {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .mapa-item {
     background: var(--white);
     padding: 30px;
@@ -529,10 +452,11 @@ a {
     color: white;
 }
 
+/* Card de Link (Grupo de Ensino) */
 .link-loja {
     display: block;
     position: relative;
-    max-width: 300px; 
+    max-width: 400px; 
     margin: 0 auto; 
     overflow: hidden;
     border-radius: 20px;
@@ -565,6 +489,15 @@ a {
 }
 .link-loja:hover .btn-loja { color: var(--primary-dark); }
 
+/* Contato */
+.contato-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+    align-items: stretch; 
+}
+#contato .contato-grid { grid-template-columns: 1fr 1fr; }
+
 .social-icons {
     display: flex;
     justify-content: center;
@@ -580,11 +513,9 @@ a {
 }
 .social-icons img:hover { transform: scale(1.2) rotate(5deg); }
 
-/* =========================================
-   8. RODAPÉ E WIDGETS
-   ========================================= */
+/* 8. RODAPÉ */
 footer { 
-    background: linear-gradient(135deg, #006030 0%, #004d26 100%);
+    background: linear-gradient(135deg, #1a237e 0%, #0d1142 100%); /* Roxo/Azul Escuro */
     color: var(--white); 
     padding: 60px 0; 
     text-align: center; 
@@ -592,6 +523,7 @@ footer {
     opacity: 0.95;
 }
 
+/* 9. WIDGET WHATSAPP */
 .whatsapp-container {
     position: fixed;
     bottom: 30px;
@@ -621,55 +553,13 @@ footer {
 
 .whatsapp-img { width: 38px; height: auto; display: block; }
 
-.whatsapp-options {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-}
-.whatsapp-options.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.wa-option {
-    background: white;
-    padding: 12px 20px;
-    border-radius: 50px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    color: #333;
-    font-weight: 700;
-    font-size: 0.95rem;
-    white-space: nowrap;
-    text-decoration: none;
-    transition: 0.2s;
-}
-.wa-option:hover {
-    background: #f8f9fa;
-    transform: scale(1.03);
-    color: var(--primary);
-}
-
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
     70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* =========================================
-   9. ESTILOS DO MODAL (CARD FLUTUANTE)
-   ========================================= */
+/* 10. ESTILOS DO MODAL */
 .modal-container {
     display: none; 
     position: fixed;
@@ -726,39 +616,8 @@ footer {
 }
 
 #modal-descricao {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #666;
-}
-
-/* Carga Horária */
-.modal-info-workload {
-    background: #f0fdf4; /* Verde claro */
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    color: var(--primary-dark);
-    font-weight: 600;
-}
-
-/* Lista de Módulos e Cursos */
-.modal-course-list {
-    text-align: left;
-    margin-bottom: 20px;
-    max-height: 200px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-.modal-course-list p { margin-bottom: 10px; color: var(--text); }
-.modal-course-list ul { padding-left: 20px; }
-.modal-course-list li { margin-bottom: 5px; color: #555; }
-
-/* Tema Vermelho (Uniritter) dentro do Modal */
-.modal-container.uniritter-theme .modal-content {
-    border-top: 5px solid #b30000;
-}
-.modal-container.uniritter-theme #modal-titulo { color: #b30000; }
-.modal-container.uniritter-theme #modal-whatsapp-btn {
-    background: linear-gradient(135deg, #ff4b4b 0%, #b30000 100%);
 }
 
 .modal-actions {
@@ -780,10 +639,7 @@ footer {
 }
 #modal-whatsapp-btn:hover { filter: brightness(0.95); transform: translateY(-2px); }
 
-
-/* =========================================
-   10. RESPONSIVIDADE (MOBILE)
-   ========================================= */
+/* 11. RESPONSIVIDADE (MOBILE) */
 @media (max-width: 768px) {
     .menu-icon { display: block; }
     
@@ -839,16 +695,12 @@ footer {
 
     .btn-outline { margin: 10px 5px; }
     
-    /* Layouts de Grid */
     .contato-grid, 
-    #contato .contato-grid, 
-    #bolsas .contato-grid { 
+    .mapas-grid { 
         grid-template-columns: 1fr; 
         gap: 40px; 
     }
     
-    .mapas-grid { grid-template-columns: 1fr; }
-
     .whatsapp-float {
         width: 55px;
         height: 55px;

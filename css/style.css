@@ -1,0 +1,861 @@
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================= */
+:root {
+    /* Cores da Marca */
+    --primary: #008f4c;
+    --primary-gradient: linear-gradient(135deg, #9cc837 0%, #008f4c 100%);
+    --primary-dark: #00753e;
+    --secondary: #e6f4ea; 
+    
+    /* Cores Neutras */
+    --text: #212529;
+    --light: #f8f9fa;
+    --white: #ffffff;
+    
+    /* Sombras */
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Reset Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { 
+    scroll-behavior: smooth; 
+    overflow-x: hidden;
+}
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    color: var(--text); 
+    background-color: var(--white);
+    padding-top: 70px; /* Compensação do cabeçalho fixo */
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+a { 
+    text-decoration: none; 
+    transition: all 0.3s ease; 
+}
+
+/* =========================================
+   2. CABEÇALHO (HEADER)
+   ========================================= */
+.main-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000;
+    border-bottom: 2px solid rgba(0, 143, 76, 0.1);
+}
+
+.main-header .container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 70px; 
+}
+
+/* Logo */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 48px; 
+    width: auto;
+    display: block;
+}
+
+.logo { 
+    font-size: 1.1rem; 
+    font-weight: 800; 
+    background: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+    position: relative;
+    top: 5px; 
+    line-height: 1; 
+}
+
+/* Menu Desktop */
+.desktop-menu ul {
+    display: flex;
+    gap: 15px; 
+    list-style: none;
+    align-items: center;
+}
+
+.desktop-menu a { 
+    color: var(--text); 
+    font-weight: 600; 
+    font-size: 0.8rem; 
+    position: relative;
+    padding: 5px 0;
+}
+
+.desktop-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.desktop-menu a:hover { color: var(--primary); }
+.desktop-menu a:hover::after { width: 100%; }
+
+/* Botão Destaque (Portal do Aluno) */
+.btn-destaque { 
+    background: var(--primary-gradient); 
+    color: var(--white) !important; 
+    padding: 10px 20px; 
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 143, 76, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; 
+    min-width: 130px;    
+    height: auto;
+}
+
+.btn-destaque::after { display: none; }
+
+.btn-destaque:hover { 
+    filter: brightness(0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 143, 76, 0.3);
+}
+
+.menu-icon { 
+    display: none; 
+    background: none; 
+    border: none; 
+    font-size: 1.8rem; 
+    cursor: pointer; 
+    color: var(--primary); 
+}
+
+/* =========================================
+   3. SEÇÃO HERO (BANNER)
+   ========================================= */
+.hero {
+    min-height: 60vh; 
+    height: auto;
+    position: relative;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--white);
+    background-color: #000; 
+    padding-top: 100px; 
+    padding-bottom: 50px;
+}
+
+.overlay {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(180deg, rgba(156, 200, 55, 0.9) 0%, rgba(0, 96, 48, 0.95) 100%);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2; 
+    width: 100%;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    text-align: left;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 550px;
+}
+
+.hero h1 { 
+    font-size: 2.5rem; 
+    margin-bottom: 15px; 
+    font-weight: 800;
+    line-height: 1.1;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hero p { font-size: 1rem; }
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-banner-img {
+    max-width: 85%; 
+    height: auto;
+    mix-blend-mode: multiply; 
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
+
+/* =========================================
+   4. BOTÕES E UTILITÁRIOS GERAIS
+   ========================================= */
+.btn-primary { 
+    background: var(--primary-gradient); 
+    color: var(--white); 
+    padding: 15px 35px; 
+    border-radius: 8px;
+    font-weight: bold; 
+    border: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+.btn-primary:hover { 
+    filter: brightness(0.95);
+    color: var(--white); 
+    transform: translateY(-2px);
+}
+
+.btn-outline { 
+    border: 2px solid var(--white); 
+    color: var(--white); 
+    padding: 13px 33px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    margin-left: 10px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.btn-outline:hover { 
+    background: var(--white); 
+    color: var(--primary); 
+}
+
+.section-padding { padding: 80px 0; }
+
+.section-bg { 
+    background-color: var(--secondary);
+    border-top: 1px solid rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.section-title { 
+    text-align: center; 
+    font-size: 2.2rem; 
+    margin-bottom: 50px; 
+    color: var(--primary); 
+    position: relative;
+    font-weight: 800;
+}
+.section-title::after {
+    content: ''; 
+    display: block; 
+    width: 60px; 
+    height: 6px; 
+    background: var(--primary-gradient); 
+    margin: 20px auto 0;
+    border-radius: 10px;
+}
+
+/* =========================================
+   5. CARROSSEL (SPLIDE)
+   ========================================= */
+.splide { padding: 0 60px; }
+
+.splide__arrow {
+    background: var(--primary-gradient);
+    opacity: 1; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 3.5rem;  
+    height: 3.5rem; 
+    border-radius: 50%;
+}
+
+.splide__arrow svg {
+    fill: white; 
+    width: 20px;  
+    height: 20px; 
+}
+
+.splide__arrow--prev { left: 10px; }
+.splide__arrow--next { right: 10px; }
+
+.splide__arrow:hover {
+    transform: scale(1.1) translateY(-50%); 
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Tema Uniritter (Vermelho) */
+.splide-uniritter .splide__arrow {
+    background: linear-gradient(135deg, #ff4b4b 0%, #b30000 100%);
+}
+.splide-uniritter .splide__arrow:hover {
+    box-shadow: 0 6px 20px rgba(179, 0, 0, 0.4);
+}
+#uniritter .section-title { color: #b30000; }
+#uniritter .section-title::after {
+    background: linear-gradient(135deg, #ff4b4b 0%, #b30000 100%);
+}
+#uniritter .btn-link { color: #b30000; }
+#uniritter .btn-link:hover { color: #800000; text-decoration: underline; }
+
+/* Estilo do Card do Curso */
+.card-curso {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+.card-curso:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto; 
+    position: relative;
+    background-color: #fff; 
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+}
+.card-img-top img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.card-body { 
+    padding: 30px;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+.card-body h3 { 
+    margin-top: 0; 
+    color: var(--text); 
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+.card-body p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: auto; 
+}
+
+.btn-link { 
+    color: var(--primary); 
+    font-weight: 700; 
+    display: inline-block; 
+    margin-top: 20px; 
+    text-transform: uppercase; 
+    font-size: 0.8rem; 
+    letter-spacing: 1px;
+}
+.btn-link:hover { color: var(--primary-dark); text-decoration: underline; }
+
+/* =========================================
+   6. FORMULÁRIOS
+   ========================================= */
+.contato-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+    align-items: stretch; 
+}
+#contato .contato-grid { grid-template-columns: 1fr 1fr; }
+
+.form-contato {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-contato input, 
+.form-contato textarea, 
+.form-contato select {
+    width: 100%; 
+    padding: 18px; 
+    margin-bottom: 20px;
+    border: 2px solid #eee;
+    border-radius: 10px; 
+    font-family: inherit;
+    box-sizing: border-box; 
+    transition: 0.3s;
+    font-size: 1rem;
+    background-color: #fcfcfc;
+}
+.form-contato input:focus, .form-contato textarea:focus {
+    outline: none; 
+    border-color: var(--primary); 
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(156, 200, 55, 0.15);
+}
+
+.form-contato button {
+    background: var(--primary-gradient); 
+    color: white; 
+    border: none; 
+    width: 100%; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    padding: 18px;
+    font-weight: 800;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.form-contato button:hover { 
+    filter: brightness(0.95);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 143, 76, 0.2);
+}
+
+.email-link, .tel-link {
+    color: var(--text);
+    font-weight: 700;
+    transition: 0.3s;
+    font-size: 1.2rem;
+}
+.email-link:hover, .tel-link:hover { color: var(--primary); }
+.tel-link { text-decoration: none; }
+
+/* =========================================
+   7. MAPAS E LOJA
+   ========================================= */
+.mapas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+}
+.mapa-item {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mapa-item:hover { transform: translateY(-5px); }
+
+.mapa-item h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.mapa-frame {
+    margin: 25px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.btn-rota {
+    display: inline-block;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    transition: all 0.3s ease;
+}
+.btn-rota:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.link-loja {
+    display: block;
+    position: relative;
+    max-width: 300px; 
+    margin: 0 auto; 
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--white);
+    text-align: center;
+}
+.link-loja:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.img-loja {
+    width: 100%;
+    height: auto; 
+    display: block;
+}
+
+.btn-loja {
+    display: block;
+    padding: 15px 20px; 
+    background-color: #fff;
+    color: var(--primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    border-top: 1px solid #eee;
+}
+.link-loja:hover .btn-loja { color: var(--primary-dark); }
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+.social-icons img {
+    width: 50px; 
+    height: 50px; 
+    object-fit: contain; 
+    transition: transform 0.3s;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+}
+.social-icons img:hover { transform: scale(1.2) rotate(5deg); }
+
+/* =========================================
+   8. RODAPÉ E WIDGETS
+   ========================================= */
+footer { 
+    background: linear-gradient(135deg, #006030 0%, #004d26 100%);
+    color: var(--white); 
+    padding: 60px 0; 
+    text-align: center; 
+    font-size: 0.9rem;
+    opacity: 0.95;
+}
+
+.whatsapp-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 5000;
+}
+
+.whatsapp-float {
+    position: relative; 
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border: none;
+    cursor: pointer;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 3s infinite; 
+    transition: all 0.3s ease;
+}
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    filter: brightness(0.95); 
+}
+
+.whatsapp-img { width: 38px; height: auto; display: block; }
+
+.whatsapp-options {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+.whatsapp-options.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.wa-option {
+    background: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.wa-option:hover {
+    background: #f8f9fa;
+    transform: scale(1.03);
+    color: var(--primary);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* =========================================
+   9. ESTILOS DO MODAL (CARD FLUTUANTE)
+   ========================================= */
+.modal-container {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 9999; 
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-container.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-container.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close-modal:hover { color: var(--text); }
+
+#modal-titulo {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+#modal-descricao {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Carga Horária */
+.modal-info-workload {
+    background: #f0fdf4; /* Verde claro */
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+/* Lista de Módulos e Cursos */
+.modal-course-list {
+    text-align: left;
+    margin-bottom: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.modal-course-list p { margin-bottom: 10px; color: var(--text); }
+.modal-course-list ul { padding-left: 20px; }
+.modal-course-list li { margin-bottom: 5px; color: #555; }
+
+/* Tema Vermelho (Uniritter) dentro do Modal */
+.modal-container.uniritter-theme .modal-content {
+    border-top: 5px solid #b30000;
+}
+.modal-container.uniritter-theme #modal-titulo { color: #b30000; }
+.modal-container.uniritter-theme #modal-whatsapp-btn {
+    background: linear-gradient(135deg, #ff4b4b 0%, #b30000 100%);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+}
+
+#modal-whatsapp-btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 35px;
+    border-radius: 50px;
+    background: var(--primary-gradient);
+    color: white;
+    font-weight: 700;
+    transition: 0.3s;
+}
+#modal-whatsapp-btn:hover { filter: brightness(0.95); transform: translateY(-2px); }
+
+
+/* =========================================
+   10. RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    .menu-icon { display: block; }
+    
+    .desktop-menu ul {
+        display: none; 
+        flex-direction: column;
+        position: absolute; 
+        top: 70px; 
+        left: 0; 
+        width: 100%;
+        background: var(--white); 
+        padding: 30px 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+    }
+    .desktop-menu ul.active { display: flex; }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    .hero h1 { font-size: 2rem; }
+    .hero-banner-img {
+        margin: 0 auto; 
+        max-height: 200px; /* Reduzido no mobile */
+    }
+
+    /* Redução de Espaçamento Geral */
+    .section-padding { padding: 40px 0; } 
+    .card-body { padding: 15px; } 
+
+    /* --- IMAGEM DO CARROSSEL MOBILE --- 
+       Lógica: Altura automática, Largura 100% (sem cortes). */
+    .card-img-top {
+        height: auto; 
+        padding: 0;
+        background-color: transparent;
+        display: block; 
+    }
+
+    .card-img-top img {
+        width: 100%;       
+        height: auto;      
+        object-fit: contain; 
+        display: block;
+    }
+
+    .splide { padding: 0; }
+    .splide__arrow { width: 2.5rem; height: 2.5rem; }
+    .splide__arrow--prev { left: 5px; }
+    .splide__arrow--next { right: 5px; }
+
+    .btn-outline { margin: 10px 5px; }
+    
+    /* Layouts de Grid */
+    .contato-grid, 
+    #contato .contato-grid, 
+    #bolsas .contato-grid { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    
+    .mapas-grid { grid-template-columns: 1fr; }
+
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-img { width: 30px; }
+
+    .btn-destaque { margin-top: 15px; width: 80%; }
+}

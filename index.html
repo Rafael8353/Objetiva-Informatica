@@ -25,7 +25,7 @@
     <header class="main-header">
         <div class="container">
             <a href="#home" class="logo-link">
-                <!-- Mantém o logo, mas o texto muda visualmente -->
+                <!-- Logo -->
                 <img src="img/Logo.png" alt="Logo Objetiva" class="logo-img">
                 <span class="logo">Objetiva Informática</span>
             </a>
@@ -38,7 +38,8 @@
                     <li><a href="#loja">A Loja</a></li>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#contato">Contato</a></li>
-                    <li><a href="#grupo" class="btn-destaque">Grupo de Ensino</a></li>
+                    <!-- Link normalizado -->
+                    <li><a href="#grupo">Escola Objetiva</a></li>
                 </ul>
             </nav>
         </div>
@@ -60,13 +61,12 @@
         </div>
     </section>
 
-    <!-- A Loja (Localização Única) -->
+    <!-- A Loja -->
     <section id="loja" class="section-padding">
         <div class="container">
             <h2 class="section-title">Conheça a nossa loja</h2>
             <p style="text-align: center; margin-bottom: 40px;">Venha nos visitar em Arroio dos Ratos!</p>
             
-            <!-- Centralizado e Único -->
             <div class="mapas-grid single-map">
                 <div class="mapa-item">
                     <h3>Arroio dos Ratos</h3>
@@ -90,12 +90,12 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         
-                        <!-- Serviço 1 -->
+                        <!-- 1. Formatação e Instalação -->
                         <li class="splide__slide">
                             <div class="card-curso" 
                                  data-modal-type="padrao" 
                                  data-descricao="Realizamos a formatação completa do seu computador ou notebook, instalando o sistema operacional mais adequado, drivers atualizados e programas essenciais para o seu dia a dia. Deixamos sua máquina rápida e segura novamente.">
-                                <div class="card-img-top"><img src="img/formatacao.png" alt="Formatação" onerror="this.src='https://placehold.co/400x300?text=Formatação'"></div>
+                                <div class="card-img-top"><img src="img/Formatacao.jpg" alt="Formatação"></div>
                                 <div class="card-body">
                                     <h3>Formatação e Instalação</h3>
                                     <p>Sistema operacional e programas essenciais.</p>
@@ -104,26 +104,12 @@
                             </div>
                         </li>
 
-                        <!-- Serviço 2 -->
-                        <li class="splide__slide">
-                            <div class="card-curso" 
-                                 data-modal-type="padrao" 
-                                 data-descricao="Fazemos a limpeza interna completa do seu hardware, troca de pasta térmica e remoção de poeira. A manutenção preventiva evita superaquecimento, travamentos e aumenta a vida útil do seu equipamento.">
-                                <div class="card-img-top"><img src="img/limpeza.png" alt="Limpeza" onerror="this.src='https://placehold.co/400x300?text=Limpeza+e+Manutenção'"></div>
-                                <div class="card-body">
-                                    <h3>Limpeza e Manutenção</h3>
-                                    <p>Limpeza física e troca de pasta térmica.</p>
-                                    <a href="#" class="btn-link btn-abrir-modal">Saiba Mais →</a>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Serviço 3 -->
+                        <!-- 2. Impressão e Xerox -->
                         <li class="splide__slide">
                             <div class="card-curso" 
                                  data-modal-type="padrao" 
                                  data-descricao="Precisa imprimir documentos, trabalhos escolares, boletos ou tirar cópias? Nossa Lan House oferece impressões de alta qualidade (preto e branco ou colorido), digitalização de documentos e xerox.">
-                                <div class="card-img-top"><img src="img/impressao.png" alt="Impressão" onerror="this.src='https://placehold.co/400x300?text=Impressão+e+Xerox'"></div>
+                                <div class="card-img-top"><img src="img/Impressao.jpg" alt="Impressão"></div>
                                 <div class="card-body">
                                     <h3>Impressão e Xerox</h3>
                                     <p>Impressões P/B, coloridas e digitalização.</p>
@@ -132,26 +118,40 @@
                             </div>
                         </li>
 
-                        <!-- Serviço 4 -->
+                        <!-- 3. Limpeza e Manutenção -->
                         <li class="splide__slide">
                             <div class="card-curso" 
                                  data-modal-type="padrao" 
-                                 data-descricao="Temos uma grande variedade de acessórios para o seu setup: mouses, teclados, fones de ouvido, cabos, carregadores, pendrives e muito mais. Produtos de qualidade com garantia.">
-                                <div class="card-img-top"><img src="img/acessorios.png" alt="Acessórios" onerror="this.src='https://placehold.co/400x300?text=Acessórios'"></div>
+                                 data-descricao="Fazemos a limpeza interna completa do seu hardware, troca de pasta térmica e remoção de poeira. A manutenção preventiva evita superaquecimento, travamentos e aumenta a vida útil do seu equipamento.">
+                                <div class="card-img-top"><img src="img/Manutencao.jpg" alt="Limpeza"></div>
                                 <div class="card-body">
-                                    <h3>Venda de Acessórios</h3>
-                                    <p>Mouses, teclados, cabos e periféricos.</p>
+                                    <h3>Limpeza e Manutenção</h3>
+                                    <p>Limpeza física e troca de pasta térmica.</p>
                                     <a href="#" class="btn-link btn-abrir-modal">Saiba Mais →</a>
                                 </div>
                             </div>
                         </li>
 
-                        <!-- Serviço 5 -->
+                        <!-- 4. Serviços de Lan House -->
+                        <li class="splide__slide">
+                            <div class="card-curso" 
+                                 data-modal-type="padrao" 
+                                 data-descricao="Serviços de acesso à internet, emissão de segundas vias de contas, inscrições em concursos, digitação de currículos e pesquisas escolares. Tudo com suporte da nossa equipe.">
+                                <div class="card-img-top"><img src="img/Lan.jpg" alt="Lan House"></div>
+                                <div class="card-body">
+                                    <h3>Serviços de Lan House</h3>
+                                    <p>Acesso à internet e serviços digitais.</p>
+                                    <a href="#" class="btn-link btn-abrir-modal">Saiba Mais →</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 5. Upgrades e Peças -->
                         <li class="splide__slide">
                             <div class="card-curso" 
                                  data-modal-type="padrao" 
                                  data-descricao="Seu computador está lento? Pode ser hora de um upgrade. Instalamos SSDs para deixar sua máquina até 10x mais rápida, aumentamos a memória RAM e trocamos telas de notebooks quebradas.">
-                                <div class="card-img-top"><img src="img/upgrade.png" alt="Upgrade" onerror="this.src='https://placehold.co/400x300?text=Upgrade+e+Peças'"></div>
+                                <div class="card-img-top"><img src="img/Upgrade.jpg" alt="Upgrade"></div>
                                 <div class="card-body">
                                     <h3>Upgrades e Peças</h3>
                                     <p>Instalação de SSD, Memória RAM e Telas.</p>
@@ -160,15 +160,15 @@
                             </div>
                         </li>
 
-                        <!-- Serviço 6 -->
+                        <!-- 6. Venda de Acessórios -->
                         <li class="splide__slide">
                             <div class="card-curso" 
                                  data-modal-type="padrao" 
-                                 data-descricao="Serviços de acesso à internet, emissão de segundas vias de contas, inscrições em concursos, digitação de currículos e pesquisas escolares. Tudo com suporte da nossa equipe.">
-                                <div class="card-img-top"><img src="img/lanhouse.png" alt="Lan House" onerror="this.src='https://placehold.co/400x300?text=Lan+House'"></div>
+                                 data-descricao="Temos uma grande variedade de acessórios para o seu setup: mouses, teclados, fones de ouvido, cabos, carregadores, pendrives e muito mais. Produtos de qualidade com garantia.">
+                                <div class="card-img-top"><img src="img/Acessorios.jpg" alt="Acessórios"></div>
                                 <div class="card-body">
-                                    <h3>Serviços de Lan House</h3>
-                                    <p>Acesso à internet e serviços digitais.</p>
+                                    <h3>Venda de Acessórios</h3>
+                                    <p>Mouses, teclados, cabos e periféricos.</p>
                                     <a href="#" class="btn-link btn-abrir-modal">Saiba Mais →</a>
                                 </div>
                             </div>
@@ -193,17 +193,17 @@
                 <div class="contato-grid"> 
                     <div class="mapa-item">
                         <h3>✉️ E-mail</h3>
-                        <p><a href="mailto:objetivainfoarroio@gmail.com" class="email-link">objetivainfoarroio@gmail.com</a></p>
+                        <p><a href="mailto:contato@objetiva.com.br" class="email-link" style="color: black; font-weight: bold;">contato@objetiva.com.br</a></p>
                     </div>
 
                     <div class="mapa-item">
                         <h3>📱 Redes Sociais</h3>
                         <p>Siga nosso dia a dia:</p>
                         <div class="social-icons">
-                            <a href="https://www.instagram.com/objetivainfoarroio/" target="_blank">
+                            <a href="https://www.instagram.com/objetivainfoar" target="_blank">
                                 <img src="img/Instagram-logo.png" alt="Instagram">
                             </a>
-                            <a href="https://www.facebook.com/objetivainfoarroio/" target="_blank">
+                            <a href="https://www.facebook.com/objetivainformaticaar" target="_blank">
                                 <img src="img/Facebook-logo.png" alt="Facebook">
                             </a>
                         </div>
@@ -224,8 +224,8 @@
                 </p>
                 
                 <a href="https://www.objetivagrupodeensino.com.br/" target="_blank" class="link-loja">
-                    <img src="img/Logo.png" alt="Grupo de Ensino" class="img-loja" style="padding: 20px; object-fit: contain;">
-                    <span class="btn-loja">Acessar Site da Escola →</span>
+                    <!-- ATUALIZADO: Escola.jpg -->
+                    <img src="img/Escola.jpg" alt="Grupo de Ensino" class="img-loja" style="padding: 0; object-fit: cover;">
                 </a>
             </div>
         </div>
@@ -240,7 +240,6 @@
 
     <!-- Widget WhatsApp (Apenas Arroio) -->
     <div class="whatsapp-container">
-        <!-- Removido o menu de opções pois só tem uma loja agora -->
         <a href="https://wa.me/5551980402554?text=Ol%C3%A1!+Gostaria+de+um+or%C3%A7amento+de+assist%C3%AAncia+t%C3%A9cnica." target="_blank" class="whatsapp-float">
             <img src="img/Whatsapp-logo.png" alt="WhatsApp" class="whatsapp-img">
         </a>

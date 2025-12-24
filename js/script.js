@@ -7,19 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- MENU MOBILE ---
     const btnMobile = document.getElementById('mobile-btn');
-    const navMenu = document.querySelector('.desktop-menu'); // Seletor para a versão sem Bootstrap
+    const menuLista = document.getElementById('menu-lista'); // Seleciona a lista UL
 
-    if (btnMobile && navMenu) {
+    if (btnMobile && menuLista) {
         // Alternar menu ao clicar no botão
         btnMobile.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            menuLista.classList.toggle('active');
         });
 
-        // Fechar menu ao clicar em qualquer link
-        const links = navMenu.querySelectorAll('a');
+        // Fechar menu ao clicar em qualquer link (para navegar na mesma página)
+        const links = menuLista.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+                menuLista.classList.remove('active');
             });
         });
     }
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     768: {
                         perPage: 1, // 1 card em Celulares
                         gap: '15px',
-                        padding: '0' // Sem padding lateral para focar no card inteiro
+                        padding: '0' // Sem padding lateral: foca no card inteiro (CSS controla a imagem)
                     }
                 }
             }).mount();
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn("A biblioteca Splide.js não foi encontrada.");
     }
 
-    // --- INICIALIZA O MODAL ---
+    // --- INICIALIZA O MODAL DE SERVIÇOS ---
     initModal();
 });
 
@@ -85,19 +85,19 @@ function initModal() {
         // Encontra o card pai para extrair os dados
         const card = btn.closest('.card-curso');
         
-        // Extrai dados
+        // Extrai dados do serviço
         const titulo = card.querySelector('h3').innerText;
-        // Pega a descrição do atributo data
-        const descricao = card.getAttribute('data-descricao') || "Entre em contato para mais detalhes.";
+        // Pega a descrição do atributo data (mais confiável) ou do texto do card
+        const descricao = card.getAttribute('data-descricao') || card.querySelector('p').innerText;
 
         // Preenche o Modal
         modalTitle.innerText = titulo;
         modalDesc.innerText = descricao;
 
         // Link do WhatsApp para Orçamento
-        // Mensagem personalizada para serviços de informática
+        // Número da Loja (Arroio dos Ratos)
+        const telefoneDestino = "5551980402554"; 
         const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para o serviço de: ${titulo}.`);
-        const telefoneDestino = "5551980402554"; // Telefone da loja Arroio dos Ratos
         
         modalWhatsapp.href = `https://wa.me/${telefoneDestino}?text=${mensagem}`;
 
@@ -105,7 +105,7 @@ function initModal() {
         modal.classList.add('active');
     });
 
-    // Fechar Modal
+    // Função para fechar o modal
     const fecharModal = () => {
         modal.classList.remove('active');
     };

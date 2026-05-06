@@ -1,21 +1,36 @@
-/**
- * =========================================
- * 1. INICIALIZAÇÃO GERAL
- * =========================================
- */
 document.addEventListener('DOMContentLoaded', function() {
     
+    // --- LÓGICA DE ALERTA DO FORMULÁRIO (SUCESSO/ERRO) ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const statusForm = urlParams.get('status');
+
+    if (statusForm === 'sucesso') {
+        const msgSucesso = document.getElementById('msg-sucesso');
+        if (msgSucesso) {
+            msgSucesso.style.display = 'block'; 
+            const novaUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState({}, document.title, novaUrl);
+            setTimeout(() => { msgSucesso.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 500);
+        }
+    } else if (statusForm === 'erro') {
+        const msgErro = document.getElementById('msg-erro');
+        if (msgErro) {
+            msgErro.style.display = 'block';
+            msgErro.innerText = 'Ocorreu um erro ao enviar. Tente novamente ou chame no WhatsApp.';
+            const novaUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState({}, document.title, novaUrl);
+            setTimeout(() => { msgErro.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 500);
+        }
+    }
+
     // --- MENU MOBILE ---
     const btnMobile = document.getElementById('mobile-btn');
-    const menuLista = document.getElementById('menu-lista'); // Seleciona a lista UL
+    const menuLista = document.getElementById('menu-lista');
 
     if (btnMobile && menuLista) {
-        // Alternar menu ao clicar no botão
         btnMobile.addEventListener('click', function() {
             menuLista.classList.toggle('active');
         });
-
-        // Fechar menu ao clicar em qualquer link (para navegar na mesma página)
         const links = menuLista.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -24,98 +39,95 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- CARROSSEL COM SPLIDE.JS ---
+    // --- CARROSSEL DINÂMICO E SPLIDE ---
     if (typeof Splide !== 'undefined') {
-        const elms = document.getElementsByClassName('splide');
+        
+        // Função para montar o HTML do card
+        function criarCard(servico) {
+            // A descrição curta vai no <p> e a longa vai no data-descricao pro modal
+            return `
+                <li class="splide__slide">
+                    <div class="card-curso" data-descricao="${servico.descricao_longa || ''}">
+                        <div class="card-img-top btn-abrir-modal" style="cursor: pointer;">
+                            <img src="${servico.imagem}" alt="${servico.titulo}">
+                        </div>
+                        <div class="card-body">
+                            <h3>${servico.titulo}</h3>
+                            <p>${servico.descricao_curta || ''}</p>
+                            <a href="#" class="btn-link btn-abrir-modal">Saiba Mais →</a>
+                        </div>
+                    </div>
+                </li>
+            `;
+        }
 
-        // Inicializa todos os carrosséis encontrados na página
-        for (let i = 0; i < elms.length; i++) {
-            new Splide(elms[i], {
-                type: 'loop',       // Loop infinito
-                perPage: 3,         // 3 cards no Desktop
-                perMove: 1,
-                gap: '30px',
-                pagination: false,
-                arrows: true,
-                
-                // Responsividade
-                breakpoints: {
-                    1024: {
-                        perPage: 2, // 2 cards em Tablets
-                    },
-                    768: {
-                        perPage: 1, // 1 card em Celulares
-                        gap: '15px',
-                        padding: '0' // Sem padding lateral: foca no card inteiro (CSS controla a imagem)
+        // Busca os dados no Banco
+        fetch('api-servicos.php')
+            .then(response => response.json())
+            .then(servicos => {
+                const listaServicos = document.getElementById('lista-servicos');
+
+                if(servicos.erro) { console.error('Erro no Banco:', servicos.erro); return; }
+
+                // Injeta os cards na tela
+                servicos.forEach(servico => {
+                    if (listaServicos) listaServicos.innerHTML += criarCard(servico);
+                });
+
+                // Só inicia o carrossel DEPOIS que os cards foram criados
+                const elms = document.getElementsByClassName('splide');
+                for (let i = 0; i < elms.length; i++) {
+                    if (elms[i].querySelector('.splide__slide')) {
+                        new Splide(elms[i], {
+                            type: 'loop',
+                            perPage: 3,
+                            perMove: 1,
+                            gap: '30px',
+                            pagination: false,
+                            arrows: true,
+                            breakpoints: {
+                                1024: { perPage: 2 },
+                                768: { perPage: 1, gap: '15px', padding: '0' }
+                            }
+                        }).mount();
                     }
                 }
-            }).mount();
-        }
-    } else {
-        console.warn("A biblioteca Splide.js não foi encontrada.");
+            })
+            .catch(error => console.error('Erro ao conectar com a API:', error));
+            
     }
 
-    // --- INICIALIZA O MODAL DE SERVIÇOS ---
     initModal();
 });
 
-/**
- * =========================================
- * 2. LÓGICA DO MODAL (SERVIÇOS)
- * =========================================
- */
 function initModal() {
     const modal = document.getElementById('modal-curso');
     const closeBtn = document.querySelector('.close-modal');
-    
-    // Elementos Internos do Modal
     const modalTitle = document.getElementById('modal-titulo');
     const modalDesc = document.getElementById('modal-descricao');
     const modalWhatsapp = document.getElementById('modal-whatsapp-btn');
     
-    // Delegação de eventos para capturar cliques nos botões "Saiba Mais"
     document.addEventListener('click', (e) => {
-        // Verifica se clicou num botão de abrir modal
         const btn = e.target.closest('.btn-abrir-modal');
-        
         if (!btn) return; 
 
         e.preventDefault();
 
-        // Encontra o card pai para extrair os dados
         const card = btn.closest('.card-curso');
-        
-        // Extrai dados do serviço
         const titulo = card.querySelector('h3').innerText;
-        // Pega a descrição do atributo data (mais confiável) ou do texto do card
         const descricao = card.getAttribute('data-descricao') || card.querySelector('p').innerText;
 
-        // Preenche o Modal
         modalTitle.innerText = titulo;
         modalDesc.innerText = descricao;
 
-        // Link do WhatsApp para Orçamento
-        // Número da Loja (Arroio dos Ratos)
         const telefoneDestino = "5551980402554"; 
-        const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para o serviço de: ${titulo}.`);
-        
+        const mensagem = encodeURIComponent(`Olá! Gostaria de solicitar um orçamento para: ${titulo}.`);
         modalWhatsapp.href = `https://wa.me/${telefoneDestino}?text=${mensagem}`;
 
-        // Exibe o modal
         modal.classList.add('active');
     });
 
-    // Função para fechar o modal
-    const fecharModal = () => {
-        modal.classList.remove('active');
-    };
-
+    const fecharModal = () => { modal.classList.remove('active'); };
     if (closeBtn) closeBtn.addEventListener('click', fecharModal);
-
-    // Fecha ao clicar no fundo escuro
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            fecharModal();
-        }
-    });
+    window.addEventListener('click', (e) => { if (e.target === modal) fecharModal(); });
 }

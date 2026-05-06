@@ -1,62 +1,43 @@
-# 🎓 Objetiva Grupo de Ensino - Website Institucional
+# 💻 Sistema de Gestão e Captação - Assistência Técnica
 
-Este repositório contém o código-fonte do website da **Loa Objetiva**, uma loja focada em assistência técnica, informática e vendas de produtos, com unidades em Charqueadas e Arroio dos Ratos (RS).
+Uma plataforma web dinâmica desenvolvida para uma loja de informática e assistência técnica. O sistema combina uma vitrine de serviços interativa com captação direta de orçamentos via WhatsApp e E-mail, além de um painel administrativo seguro para gerenciamento de portfólio.
 
-O projeto é uma **Landing Page** responsiva, otimizada para conversão de leads e divulgação da grade curricular.
+## 🚀 Visão Geral do Projeto
 
-O Site está atualmente no ar no link: https://objetivaloja.com.br/
+Este projeto é a evolução de uma landing page estática criada por mim, o site antigamente estático agora é totalmente dinâmico, o que era apenas uma landing page comum agora é possível ser editada por um administrador da empresa sem que ele tenha conhecimentos de programação graças a tela de gestão. Ele permite que os gestores da loja atualizem os serviços oferecidos em tempo real através de um painel de controle próprio, além de rotear os pedidos de orçamento diretamente para o e-mail oficial da loja via SMTP autenticado.
 
-## 🖥️ Visualização do Projeto
+## ✨ Funcionalidades
 
-O site apresenta:
-* **Home:** Banner principal e proposta de valor.
-* **Localização:** Mapas interativos das duas unidades.
-* **Serviços:** Carrossel interativo com listagem de serviços disponibilizados pela loa.
-* **Contato:** Links para redes sociais, widget de WhatsApp e Formulário de Orçamentos.
+### Frontend (Vitrine da Loja)
+* **Catálogo Dinâmico:** Carrossel de serviços responsivo construído com a biblioteca Splide.js, alimentado em tempo real pelo banco de dados.
+* **Modais de Detalhamento:** Sistema de cards flutuantes que exibem a descrição expandida de cada serviço ao clicar em "Saiba Mais".
+* **Orçamento via WhatsApp:** Geração de links dinâmicos que direcionam o cliente para o WhatsApp da loja com mensagens pré-preenchidas com o serviço de interesse.
+* **Formulário de Contato Nativo:** Captação de leads processada no próprio servidor com feedback visual assíncrono (sem recarregar a página), eliminando a dependência do Formspree.
 
-## 🚀 Tecnologias Utilizadas
+### Backend (Painel Administrativo)
+* **Autenticação Segura:** Acesso restrito via login e senha.
+* **CRUD de Serviços:** Interface amigável para Cadastrar, Ler, Atualizar e Excluir serviços (incluindo título, descrições curtas/longas e upload de imagens).
+* **API RESTful:** Endpoint leve (`api-servicos.php`) que distribui os dados em JSON para o frontend.
+* **Disparo de E-mails (SMTP):** Integração com PHPMailer garantindo entrega autenticada (SSL/TLS) na caixa de entrada da loja, com proteção contra injeção de código (`htmlspecialchars`).
+* **Auto-Setup de Banco de Dados:** Criação automática da tabela `servicos` no primeiro acesso ao painel.
 
-* **HTML5 Semântico:** Estrutura limpa e organizada.
-* **CSS3 Moderno:** Uso de *CSS Variables* (`:root`), Flexbox e CSS Grid. Design totalmente responsivo (Mobile-First).
-* **JavaScript (Vanilla):** Lógica para menu mobile, modais dinâmicos e manipulação do DOM.
-* **[Splide.js](https://splidejs.com/):** Biblioteca leve para criação dos carrosséis (sliders) de cursos.
-* **[Formspree](https://formspree.io/):** Backend-as-a-service para processamento do formulário de contato/bolsas.
-* **Google Fonts:** Tipografia *Montserrat*.
+## 🛠️ Tecnologias Utilizadas
 
-## ✨ Funcionalidades Principais
+* **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
+* **Backend:** PHP (Vanilla)
+* **Banco de Dados:** MySQL / PDO (PHP Data Objects)
+* **Envio de E-mails:** [PHPMailer](https://github.com/PHPMailer/PHPMailer)
+* **Componentes UI:** [Splide.js](https://splidejs.com/)
 
-1.  **Carrossel de Serviços:**
-    * Utiliza a biblioteca *Splide.js*.
-    * Adaptável: Exibe 3 cards no desktop, 2 no tablet e 1 no mobile.
-
-2.  **Sistema de Modal Dinâmico:**
-    * Ao clicar em um serviço (botão ou imagem), um modal flutuante se abre.
-    * Possui tratamento para listas longas (scroll interno) no mobile.
-
-3.  **Widget Flutuante de WhatsApp:**
-    * Botão fixo no canto da tela.
-    * Ao clicar, expande um menu com opções diretas para a unidade de **Arroio dos Ratos**
-
-4.  **Formulário de Bolsas:**
-    * Envio direto via Formspree.
-    * Validação básica de HTML5.
-
-## 📂 Estrutura de Pastas
+## 📁 Estrutura de Diretórios
 
 ```text
 /
-├── index.html      # Estrutura principal
-├── css/
-│   └── style.css   # Estilos globais e responsividade
-├── js/
-│   └── script.js   # Lógica (Menu, Modal, Slider)
-├── img/            # Imagens (Banners, Logos, Cursos em .jpg)
-└── README.md       # Documentação
-
-⚙️ Configuração e Personalização
-
-Para clonar e rodar este projeto localmente:
-
-1. git clone [https://github.com/SEU-USUARIO/NOME-DO-REPO.git](https://github.com/SEU-USUARIO/NOME-DO-REPO.git)
-
-2. Abra o index.html no seu navegador.
+├── index.html                 # Landing page e vitrine de serviços
+├── gestao-assistencia.php     # Painel Administrativo de Serviços
+├── api-servicos.php           # Endpoint JSON do catálogo
+├── enviar-email.php           # Controlador de envio de orçamentos (SMTP)
+├── css/                       # Folhas de estilo (tema Roxo/Azul)
+├── js/                        # Scripts de interação e consumo de API
+├── img/                       # Uploads de imagens e assets da marca
+└── PHPMailer/                 # Motor de envio de e-mails

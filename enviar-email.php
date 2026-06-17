@@ -11,6 +11,17 @@ require 'PHPMailer/SMTP.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
+// 1. CAPTURA A ARMADILHA (HONEYPOT)
+    $honeypot = $_POST['url_site'];
+
+    // 2. VERIFICA SE É UM ROBÔ
+    if (!empty($honeypot)) {
+        // Se o campo invisível foi preenchido, é um robô.
+        // Redireciona como 'sucesso' para que o robô ache que funcionou e vá embora, mas NÃO envia o e-mail.
+        header("Location: index.html?status=sucesso#orcamento");
+        exit;
+    }
+
     // Captura os dados do formulário com trava de segurança (htmlspecialchars)
     $nome = htmlspecialchars($_POST['nome']);
     $email_cliente = htmlspecialchars($_POST['email']);
@@ -26,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();                                            
         $mail->Host       = 'email-ssl.com.br'; 
         $mail->SMTPAuth   = true;                                   
-        $mail->Username   = 'EMAIL DO SITE'; 
-        $mail->Password   = 'SENHA DO EMAIL'; 
+        $mail->Username   = ''; // O robô disparador
+        $mail->Password   = '';               // A senha do robô
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         
         $mail->Port       = 465;                                 
         $mail->CharSet    = 'UTF-8';
@@ -36,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 2. REMETENTE E DESTINATÁRIO
         // ==========================================
         // Quem está enviando (O robô)
-        $mail->setFrom('EMAIL DO SITE', 'Site - Assistência Técnica'); 
+        $mail->setFrom('site@objetivagrupodeensino.com.br', 'Site - Assistência Técnica'); 
         
         // Para qual e-mail vai chegar a mensagem (Caixa da Loja)
-        $mail->addAddress('EMAIL DA DONA DA LOJA', 'DONA DA LOJA');     
+        $mail->addAddress('camilagvalle@gmail.com', 'Camila Valle');     
         
         // Se a loja clicar em "Responder", vai pro e-mail do cliente
         $mail->addReplyTo($email_cliente, $nome);

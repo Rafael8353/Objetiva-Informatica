@@ -47,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 2. REMETENTE E DESTINATÁRIO
         // ==========================================
         // Quem está enviando (O robô)
-        $mail->setFrom('site@objetivagrupodeensino.com.br', 'Site - Assistência Técnica'); 
+        $mail->setFrom('', 'Site - Assistência Técnica'); 
         
         // Para qual e-mail vai chegar a mensagem (Caixa da Loja)
-        $mail->addAddress('camilagvalle@gmail.com', 'Camila Valle');     
+        $mail->addAddress('', '');     
         
         // Se a loja clicar em "Responder", vai pro e-mail do cliente
         $mail->addReplyTo($email_cliente, $nome);
